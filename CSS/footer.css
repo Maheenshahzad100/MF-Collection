@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+
+  
+}
+::-webkit-scrollbar{
+  display: none;
+}
+  h1,h2,h3,h4,h5,h6{
+        font-family: var(--headings-font);
+    }
+    p,a,span{
+      font-family: var(--bodytext-font);
+    }
+:root{
+    --color-background: #FFFFFF;      /* White background */
+  --color-primary: #910a2c;         /*  maroon primary color for important headings, keys and titles */
+  --color-text: #222222;            /* Almost-black for high readability */
+  --color-btn-link-icons: #590016;          /* Use maroon for buttons, links and icons */
+  --color-btn-link-icons-hover: #a70d39;    /* Darker maroon for hover states */
+  --color-border: #EDEDED;          /* Soft gray for dividers */
+   --color-notification-alert: #f38e8e;       /* Soft blush light red for notification and alerts*/
+   --headings-font: 'Playfair Display', serif;
+   --bodytext-font: "Forum", serif;
+   --logofont:"Great Vibes", cursive;
+}
+/* footer starts here */
+.footer{
+ 
+  border-top: 1px solid var(--color-border);
+width: 100vw;
+min-height: 100vh;
+clear: both;
+position: static;
+margin-top: 5rem;
+min-height: fit-content;
+padding-top: 1rem;
+}
+.footer .footer-box{
+  display: flex;
+width: 100vw;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: space-evenly;
+
+}
+.footer .footer-box .footer-div{
+ margin-bottom: 1rem;
+ margin-top: 2rem;
+ width: 250px;
+}
+.footer h5{
+  display: flex;
+  justify-content: center;
+align-items: center;
+
+ 
+}
+.footer .footer-box .footer-div h6{
+  font-size: 1.1rem;
+  font-weight: lighter;
+}
+.footer .footer-box .footer-div ul li,.footer .footer-box .footer-div ul p,.footer .footer-box .footer-div ul input {
+  margin-top: 1.2rem;
+}
+.footer .footer-box .footer-div ul li {
+list-style: none;
+}
+.footer .footer-box .footer-div ul li a, .footer .footer-box .footer-div ul li p{
+  text-decoration: none;
+  color: var(--color-text);
+ 
+}
+.footer .footer-box .footer-div ul li a:hover{
+  color: var(--color-btn-link-icons-hover);
+}
+.footer .footer-box .footer-div ul input {
+  border: none;
+  border-bottom: 2px solid var(--color-text);
+  padding: 0.5rem 2rem;
+  margin-left: 1rem;
+  background-color: transparent;
+  width: 50%;
+}
+.footer .footer-box .footer-div ul input::placeholder{
+  color: var(--color-text);
+}
+.footer .footer-box .footer-div ul input:focus{
+  outline: none;
+}
+.footer-icons-div {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.footer-icons-div a {
+  display: inline-flex;
+  align-items: center;
+z-index: -1;
+}
+
+.footer-copywrite{
+  padding: 1rem 2rem;
+  text-align: center;
+}
+.footer-copywrite a{
+  text-decoration: none;
+}
+.footer-copywrite span{
+  color: var(--color-primary);
+  font-weight: bolder;
+}
+.footer .footer-box .footer-div ul li p{
+  letter-spacing: 1px;
+}
+.footer .footer-box .footer-news-letter{
+  width: 400px !important;
+}
+ .subscribe-btn form{
+  display: flex;
+}
+.footer .subscribe-btn button{
+  border: none;
+  width: 8em;
+  height: 3em;
+  border-radius: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+}
+
+
+.text {
+font-weight: lighter;
+  color: var(--color-background);
+  font-size: medium;
+}
+
+.footer .subscribe-btn button:hover {
+  background: linear-gradient(0deg,var(--color-btn-link-icons-hover),var(--color-notification-alert));
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+  inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+  0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+  0px 0px 180px 0px var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.footer .subscribe-btn button:hover .text {
+  color: white;
+}
+
+
+@media (max-width:851px) {
+  /* .footer{
+
+top: 280vh;
+
+} */
+
+}

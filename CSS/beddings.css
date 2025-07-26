@@ -1,0 +1,330 @@
+*{
+    margin: 0;
+    padding: 0;
+
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+  h1,h2,h3,h4,h5,h6,span{
+        font-family: var(--headings-font);
+    }
+    p,a,figcaption,select,figcaption{
+      font-family: var(--bodytext-font);
+    }
+:root{
+    --color-background: #FFFFFF;      /* White background */
+  --color-primary: #910a2c;         /*  maroon primary color for important headings, keys and titles */
+  --color-text: #222222;            /* Almost-black for high readability */
+  --color-btn-link-icons: #590016;          /* Use maroon for buttons, links and icons */
+  --color-btn-link-icons-hover: #a70d39;    /* Darker maroon for hover states */
+  --color-border: #EDEDED;          /* Soft gray for dividers */
+   --color-notification-alert: #f38e8e;       /* Soft blush light red for notification and alerts*/
+   --headings-font: 'Playfair Display', serif;
+   --bodytext-font: "Forum", serif;
+   --logofont:"Great Vibes", cursive;
+}
+/* beddings section starts here */
+.beddings-section{
+   position: static;
+    width: 100vw;
+ min-height: 100vh;
+   padding-top: 7rem;
+ 
+}
+.container{
+ margin-top: 2rem;
+    width: 100vw;
+    min-height: 100vh;
+
+
+}
+.container .available {
+  width: 20vw;
+  position: fixed;
+  top: 20vh; 
+  left: 0;
+  height: calc(100vh - 120px); 
+  overflow-y: auto;
+        border-bottom: 1px solid var(--color-border);
+  padding: 1rem;
+  z-index: 30;
+
+}
+
+.container .available .availability{
+    display: flex;
+border-bottom: 1px solid var(--color-border);
+padding-top:2rem ;
+        padding-left: 2rem;
+            padding-right: 2rem;
+z-index: 2;
+
+position: relative;
+background-color: var(--color-background);
+    justify-content: space-between;
+    height: 8vh;
+}
+.container .available .availability h3{
+    font-weight: lighter;
+
+
+}
+.container .available .availability lord-icon{
+width: 1.5rem;
+height: 1.5rem;
+}
+.container .available .show-available{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+transition-duration: 0.5s;
+position: absolute;
+bottom: 12vh;
+z-index: 1;
+height: 12vh;
+opacity: 0;
+}
+
+.container .available .show-available li a {
+text-decoration: none;
+color: var(--color-text);
+
+}
+.container .available .show-available li a:hover {
+border-bottom: solid 2px var(--color-btn-link-icons-hover);
+
+}
+
+.beddings-section .beddings-heading h2{
+    font-size: 3rem;
+    font-weight: lighter;
+    text-align: center;
+    margin-top: 2rem;
+}
+.container .bedsheets{
+    margin-left: 22vw;
+  
+
+}
+.container .bedsheets .bedsheets-div{
+    display: flex;
+
+    width: 75vw;
+    max-height: 100vh;
+    min-height: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.container .bedsheets .bedsheets-div a{
+  color: var(--color-text);
+}
+.container .bedsheets .bedsheets-div .img-div{
+    display: flex;
+    justify-content: center;
+width: 250px;
+height: 250px;
+
+align-items: center;
+margin-top: 1rem;
+position: relative;
+}
+.container .bedsheets .bedsheets-div .img-div::before{
+    position: absolute;
+    content:"";
+    width: 250px;
+    height: 250px;
+}
+.container .bedsheets .bedsheets-div .img-div:hover::before{
+      background-color:rgba(0, 0, 0, 0.2);
+transition-duration: 1s;  
+}
+
+.container .bedsheets .bedsheets-div .img-div .category-imgs{
+    width: 100%;
+    height: 100%;
+}
+.container .bedsheets .bedsheets-div .img-div figcaption{
+padding: 0.5rem 2rem;
+background-color: var(--color-background);
+    position: absolute;
+}
+.container .bedsheets .products-div{
+    display: flex;
+
+    width: 75vw;
+    max-height: 100vh;
+    min-height: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+  padding-bottom: 1rem;
+
+
+}
+.container .bedsheets .products-div a{
+    color: var(--color-text);
+    text-decoration: none;
+}
+.container .bedsheets .sorting{
+    margin-top: 2rem;
+    display: flex;
+align-items: center;
+width: auto;
+height: auto;
+flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container .bedsheets .sorting select{
+    padding:0 ;
+height: 6vh;
+width: 200px;
+font-size: 1.2rem;
+border: 2px solid var(--color-border);
+}
+.container .bedsheets .sorting select:focus{
+  border: 1px solid var(--color-text);
+  outline: none;
+}
+
+.container .bedsheets .sorting  p{
+
+font-size: 1.5rem;
+
+   
+}
+.container .bedsheets .products-div .pr-img-div{
+    position: relative;
+        width: 250px;
+    height: 250px;
+    margin-top: 2rem;
+     border: 3px solid transparent;
+     margin-bottom: 3rem;
+}
+.container .bedsheets .products-div .pr-img-div::before{
+    position: absolute;
+    content: "Quick View";
+
+    background-color: var(--color-btn-link-icons-hover);
+    width: 85%;
+transform: translate(-50%,-15%);
+top: 85%;
+left: 50%;
+padding: 0.5rem;
+text-align: center;
+color: var(--color-background);
+opacity: 0;
+font-family: var(--bodytext-font);
+   
+
+}
+.container .bedsheets .products-div .pr-img-div:hover::before{
+    opacity: 100;
+    transition-duration: 0.5s;
+         border: none;
+}
+.container .bedsheets .products-div .pr-img{
+        width: 100%;
+    height: 100%;
+   
+}
+.container .bedsheets .products-div :hover{
+    border: none;
+    transition-duration: 0.5s;
+}
+.pr-img-div .caption-div{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+width: auto;
+height: 8vh;
+
+}
+
+/* beddings section ends here */
+
+
+/* media Queries */
+@media (max-width:1500px) {
+.container .bedsheets .products-div .pr-img-div{
+
+        width: 230px;
+    height: 230px;
+  
+}
+
+}
+@media (max-width:945px) {
+.container .bedsheets .products-div .pr-img-div{
+
+        width: 200px;
+    height: 200px;
+
+}
+
+.container .bedsheets .products-div .pr-img-div::before{
+top: 80%;
+
+}
+}
+@media (max-width:880px) {
+.container{
+
+ flex-direction: column;
+
+}
+
+  .container {
+    flex-direction: column;
+  }
+
+  .container .available {
+    position: relative; 
+    width: 100vw;
+    height: 10vh;
+    top: 0;     
+    z-index: auto;
+    padding: 1rem;
+    background-color: var(--color-background);
+        margin-top: 2rem;  
+ 
+  }
+
+  .container .bedsheets {
+    position: relative;
+
+    margin-left: 0;
+    width: 100vw;
+  }
+
+
+.container .bedsheets .products-div{
+    width: 100vw;
+
+
+    
+}
+
+.container .bedsheets .bedsheets-div{
+ 
+    width: 100vw;
+
+}
+.container .bedsheets .bedsheets-div .img-div{
+
+        width: 200px ;
+    height: 200px ;
+
+ 
+}
+.container .bedsheets .bedsheets-div .img-div::before{
+          width: 200px;
+    height: 200px;
+}
+
+}
+

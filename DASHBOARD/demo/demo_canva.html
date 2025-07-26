@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MF Beddings - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Forum:wght@400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --color-background: #FFFFFF;
+            --color-primary: #910a2c;
+            --color-text: #222222;
+            --color-btn-link-icons: #590016;
+            --color-btn-link-icons-hover: #a70d39;
+            --color-border: #EDEDED;
+            --headings-font: 'Playfair Display', serif;
+            --bodytext-font: "Forum", serif;
+            --logofont: "Great Vibes", cursive;
+        }
+        
+        .font-heading { font-family: var(--headings-font); }
+        .font-body { font-family: var(--bodytext-font); }
+        .font-logo { font-family: var(--logofont); }
+        
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary { color: var(--color-primary); }
+        .text-btn { color: var(--color-btn-link-icons); }
+        .bg-btn { background-color: var(--color-btn-link-icons); }
+        .bg-btn-hover:hover { background-color: var(--color-btn-link-icons-hover); }
+        .border-custom { border-color: var(--color-border); }
+        
+        .sidebar-active { background-color: rgba(145, 10, 44, 0.1); border-right: 3px solid var(--color-primary); }
+        
+        .chart-container { position: relative; height: 300px; }
+    </style>
+</head>
+<body class="bg-gray-50 font-body">
+    <!-- Sidebar -->
+    <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg border-r border-custom z-50">
+        <div class="p-6 border-b border-custom">
+            <h1 class="font-logo text-3xl text-primary">MF Beddings</h1>
+            <p class="text-sm text-gray-600 font-body">Admin Dashboard</p>
+        </div>
+        
+        <nav class="mt-6">
+            <div class="px-4 space-y-2">
+                <a href="#" onclick="showSection('dashboard')" class="sidebar-link sidebar-active flex items-center px-4 py-3 text-btn rounded-lg transition-colors">
+                    <span class="mr-3">🏠</span>
+                    <span class="font-body">Dashboard</span>
+                </a>
+                <a href="#" onclick="showSection('products')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">📦</span>
+                    <span class="font-body">Products</span>
+                </a>
+                <a href="#" onclick="showSection('orders')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">📥</span>
+                    <span class="font-body">Orders</span>
+                </a>
+                <a href="#" onclick="showSection('customers')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">👥</span>
+                    <span class="font-body">Customers</span>
+                </a>
+                <a href="#" onclick="showSection('analytics')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">📊</span>
+                    <span class="font-body">Analytics</span>
+                </a>
+                <a href="#" onclick="showSection('reviews')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">💬</span>
+                    <span class="font-body">Reviews</span>
+                </a>
+                <a href="#" onclick="showSection('settings')" class="sidebar-link flex items-center px-4 py-3 text-btn rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="mr-3">⚙️</span>
+                    <span class="font-body">Settings</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="absolute bottom-4 left-4 right-4">
+            <button onclick="logout()" class="w-full flex items-center justify-center px-4 py-2 bg-btn text-white rounded-lg hover:bg-btn-hover transition-colors">
+                <span class="mr-2">🔐</span>
+                <span class="font-body">Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-custom px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h2 id="page-title" class="font-heading text-2xl text-primary">Dashboard Overview</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600 font-body">Welcome back, Admin</span>
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm">A</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section p-6">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-body">Total Orders Today</p>
+                            <p class="text-2xl font-heading text-primary">24</p>
+                        </div>
+                        <div class="text-2xl">📦</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-body">Revenue Today</p>
+                            <p class="text-2xl font-heading text-primary">$2,847</p>
+                        </div>
+                        <div class="text-2xl">💰</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-body">Pending Orders</p>
+                            <p class="text-2xl font-heading text-primary">8</p>
+                        </div>
+                        <div class="text-2xl">⏳</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-body">Total Products</p>
+                            <p class="text-2xl font-heading text-primary">156</p>
+                        </div>
+                        <div class="text-2xl">🛏️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h3 class="font-heading text-lg text-primary mb-4">Sales Over Time</h3>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h3 class="font-heading text-lg text-primary mb-4">Best Selling Products</h3>
+                    <div class="chart-container">
+                        <canvas id="productsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                <h3 class="font-heading text-lg text-primary mb-4">Inventory Levels</h3>
+                <div class="chart-container">
+                    <canvas id="inventoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div id="products-section" class="section hidden p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-heading text-xl text-primary">Product Management</h3>
+                <button onclick="showAddProduct()" class="bg-btn text-white px-4 py-2 rounded-lg hover:bg-btn-hover transition-colors font-body">
+                    ➕ Add New Product
+                </button>
+            </div>
+
+            <!-- Add Product Form (Hidden by default) -->
+            <div id="add-product-form" class="hidden bg-white rounded-lg shadow-sm border border-custom p-6 mb-6">
+                <h4 class="font-heading text-lg text-primary mb-4">Add New Product</h4>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Product Title</label>
+                        <input type="text" class="w-full border border-custom rounded-lg px-3 py-2 font-body" placeholder="Luxury Cotton Bedsheet Set">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Category</label>
+                        <select class="w-full border border-custom rounded-lg px-3 py-2 font-body">
+                            <option>Cotton</option>
+                            <option>Silk</option>
+                            <option>Linen</option>
+                            <option>Bamboo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Price</label>
+                        <input type="number" class="w-full border border-custom rounded-lg px-3 py-2 font-body" placeholder="99.99">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Discount Price</label>
+                        <input type="number" class="w-full border border-custom rounded-lg px-3 py-2 font-body" placeholder="79.99">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Stock Quantity</label>
+                        <input type="number" class="w-full border border-custom rounded-lg px-3 py-2 font-body" placeholder="50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-body text-gray-700 mb-2">Status</label>
+                        <select class="w-full border border-custom rounded-lg px-3 py-2 font-body">
+                            <option>Published</option>
+                            <option>Draft</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-body text-gray-700 mb-2">Description</label>
+                        <textarea class="w-full border border-custom rounded-lg px-3 py-2 font-body h-24" placeholder="Product description..."></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-body text-gray-700 mb-2">Tags</label>
+                        <input type="text" class="w-full border border-custom rounded-lg px-3 py-2 font-body" placeholder="floral, king-size, blue">
+                    </div>
+                    <div class="md:col-span-2 flex space-x-4">
+                        <button type="submit" class="bg-btn text-white px-6 py-2 rounded-lg hover:bg-btn-hover transition-colors font-body">Save Product</button>
+                        <button type="button" onclick="hideAddProduct()" class="border border-custom px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors font-body">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Products Table -->
+            <div class="bg-white rounded-lg shadow-sm border border-custom overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-50 border-b border-custom">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Image</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Price</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Stock</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">🛏️</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">Luxury Cotton Sheet Set</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">$89.99</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">25</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 font-body">Published</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <button class="text-btn hover:text-btn-hover mr-3">✏️</button>
+                                <button class="text-red-600 hover:text-red-800">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">🛏️</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">Silk Pillowcase Set</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">$45.99</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">12</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 font-body">Draft</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <button class="text-btn hover:text-btn-hover mr-3">✏️</button>
+                                <button class="text-red-600 hover:text-red-800">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div id="orders-section" class="section hidden p-6">
+            <h3 class="font-heading text-xl text-primary mb-6">Order Management</h3>
+            
+            <div class="bg-white rounded-lg shadow-sm border border-custom overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-50 border-b border-custom">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Order ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Customer</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Total</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">#ORD-001</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">John Smith</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">2024-01-15</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <select class="px-2 py-1 text-xs rounded border border-custom font-body" onchange="updateOrderStatus(this)">
+                                    <option>Pending</option>
+                                    <option>Shipped</option>
+                                    <option>Delivered</option>
+                                    <option>Cancelled</option>
+                                </select>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">$129.99</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewOrder('ORD-001')" class="text-btn hover:text-btn-hover">👁️ View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">#ORD-002</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">Sarah Johnson</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">2024-01-14</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <select class="px-2 py-1 text-xs rounded border border-custom font-body" onchange="updateOrderStatus(this)">
+                                    <option>Pending</option>
+                                    <option selected>Shipped</option>
+                                    <option>Delivered</option>
+                                    <option>Cancelled</option>
+                                </select>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">$89.99</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewOrder('ORD-002')" class="text-btn hover:text-btn-hover">👁️ View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Customers Section -->
+        <div id="customers-section" class="section hidden p-6">
+            <h3 class="font-heading text-xl text-primary mb-6">Customer Management</h3>
+            
+            <div class="bg-white rounded-lg shadow-sm border border-custom overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-50 border-b border-custom">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Orders</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Last Order</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-heading text-primary uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">John Smith</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">john@email.com</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">2024-01-15</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 font-body">Active</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewCustomer('john@email.com')" class="text-btn hover:text-btn-hover">👁️ View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">Sarah Johnson</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">sarah@email.com</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">1</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-body">2024-01-14</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 font-body">Active</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewCustomer('sarah@email.com')" class="text-btn hover:text-btn-hover">👁️ View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div id="analytics-section" class="section hidden p-6">
+            <h3 class="font-heading text-xl text-primary mb-6">Analytics & Reports</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h4 class="font-heading text-lg text-primary mb-2">Revenue This Month</h4>
+                    <p class="text-3xl font-heading text-primary">$12,847</p>
+                    <p class="text-sm text-green-600 font-body">↗️ +15% from last month</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h4 class="font-heading text-lg text-primary mb-2">Conversion Rate</h4>
+                    <p class="text-3xl font-heading text-primary">3.2%</p>
+                    <p class="text-sm text-green-600 font-body">↗️ +0.5% from last month</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h4 class="font-heading text-lg text-primary mb-2">Abandoned Carts</h4>
+                    <p class="text-3xl font-heading text-primary">23</p>
+                    <p class="text-sm text-red-600 font-body">↘️ -5 from last week</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                <h4 class="font-heading text-lg text-primary mb-4">Popular Search Terms</h4>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="font-body">cotton bedsheets</span>
+                        <span class="text-sm text-gray-600 font-body">142 searches</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-body">king size</span>
+                        <span class="text-sm text-gray-600 font-body">98 searches</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-body">silk pillowcase</span>
+                        <span class="text-sm text-gray-600 font-body">76 searches</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div id="reviews-section" class="section hidden p-6">
+            <h3 class="font-heading text-xl text-primary mb-6">Reviews & Feedback</h3>
+            
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-heading text-lg text-primary">Luxury Cotton Sheet Set</h4>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                                <span class="ml-2 text-sm text-gray-600 font-body">by John Smith</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="approveReview(this)" class="text-green-600 hover:text-green-800">✅ Approve</button>
+                            <button onclick="deleteReview(this)" class="text-red-600 hover:text-red-800">❌ Delete</button>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-body">"Amazing quality! The sheets are so soft and comfortable. Highly recommend!"</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-heading text-lg text-primary">Silk Pillowcase Set</h4>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐</span>
+                                <span class="ml-2 text-sm text-gray-600 font-body">by Sarah Johnson</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="approveReview(this)" class="text-green-600 hover:text-green-800">✅ Approve</button>
+                            <button onclick="deleteReview(this)" class="text-red-600 hover:text-red-800">❌ Delete</button>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-body">"Good quality but took longer to arrive than expected."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings-section" class="section hidden p-6">
+            <h3 class="font-heading text-xl text-primary mb-6">Settings</h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h4 class="font-heading text-lg text-primary mb-4">Store Settings</h4>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-body text-gray-700 mb-2">Store Name</label>
+                            <input type="text" value="MF Beddings" class="w-full border border-custom rounded-lg px-3 py-2 font-body">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-body text-gray-700 mb-2">Store Email</label>
+                            <input type="email" value="info@mfbeddings.com" class="w-full border border-custom rounded-lg px-3 py-2 font-body">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-body text-gray-700 mb-2">Store Phone</label>
+                            <input type="tel" value="+1 (555) 123-4567" class="w-full border border-custom rounded-lg px-3 py-2 font-body">
+                        </div>
+                        <button type="submit" class="bg-btn text-white px-4 py-2 rounded-lg hover:bg-btn-hover transition-colors font-body">Save Changes</button>
+                    </form>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border border-custom p-6">
+                    <h4 class="font-heading text-lg text-primary mb-4">Admin Users</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 border border-custom rounded-lg">
+                            <div>
+                                <p class="font-body font-semibold">Admin User</p>
+                                <p class="text-sm text-gray-600 font-body">admin@mfbeddings.com</p>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800 font-body">Owner</span>
+                        </div>
+                        <button class="w-full border-2 border-dashed border-custom rounded-lg p-4 text-btn hover:bg-gray-50 transition-colors font-body">
+                            + Add New Admin User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('sidebar-active');
+            });
+            event.target.closest('.sidebar-link').classList.add('sidebar-active');
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard Overview',
+                'products': 'Product Management',
+                'orders': 'Order Management',
+                'customers': 'Customer Management',
+                'analytics': 'Analytics & Reports',
+                'reviews': 'Reviews & Feedback',
+                'settings': 'Settings'
+            };
+            document.getElementById('page-title').textContent = titles[sectionName];
+        }
+
+        // Product management
+        function showAddProduct() {
+            document.getElementById('add-product-form').classList.remove('hidden');
+        }
+
+        function hideAddProduct() {
+            document.getElementById('add-product-form').classList.add('hidden');
+        }
+
+        // Order management
+        function updateOrderStatus(select) {
+            alert(`Order status updated to: ${select.value}`);
+        }
+
+        function viewOrder(orderId) {
+            alert(`Viewing order details for: ${orderId}`);
+        }
+
+        // Customer management
+        function viewCustomer(email) {
+            alert(`Viewing customer profile for: ${email}`);
+        }
+
+        // Review management
+        function approveReview(button) {
+            button.closest('.bg-white').style.backgroundColor = '#f0fdf4';
+            alert('Review approved!');
+        }
+
+        function deleteReview(button) {
+            if (confirm('Are you sure you want to delete this review?')) {
+                button.closest('.bg-white').remove();
+            }
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logged out successfully!');
+            }
+        }
+
+        // Initialize charts
+        window.onload = function() {
+            // Sales Chart
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Sales ($)',
+                        data: [1200, 1900, 3000, 2500, 2200, 3000, 2800],
+                        borderColor: '#910a2c',
+                        backgroundColor: 'rgba(145, 10, 44, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Products Chart
+            const productsCtx = document.getElementById('productsChart').getContext('2d');
+            new Chart(productsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Cotton Sheets', 'Silk Pillows', 'Linen Sets', 'Bamboo Sheets'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [45, 32, 28, 19],
+                        backgroundColor: '#910a2c'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Inventory Chart
+            const inventoryCtx = document.getElementById('inventoryChart').getContext('2d');
+            new Chart(inventoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['In Stock', 'Low Stock', 'Out of Stock'],
+                    datasets: [{
+                        data: [120, 25, 11],
+                        backgroundColor: ['#910a2c', '#fbbf24', '#ef4444']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        };
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'961b48ccd73a4b13',t:'MTc1MjkzOTI4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,161 @@
+Main Dashboard Features (Admin Panel)
+🏠 Dashboard Home
+Sales Summary (Cards):
+
+Total Orders Today
+
+Revenue Today
+
+Pending Orders
+
+Total Products
+
+Graphs:
+
+Sales over time (Line chart)
+
+Best-selling products (Bar chart)
+
+Inventory levels (Donut chart)
+
+📦 Products
+Manage your bedsheet products.
+
+➕ Add New Product
+Fields:
+
+Product Title
+
+Description
+
+Category (e.g., cotton, silk)
+
+Price
+
+Discount Price (optional)
+
+Stock Quantity
+
+Upload Images
+
+Tags (e.g., floral, king-size, blue)
+
+Status (Published/Draft)
+
+📋 All Products
+Table view:
+
+Image	Name	Price	Stock	Status	Edit	Delete
+
+Features:
+
+Edit/Delete functionality
+
+Bulk update stock
+
+Toggle visibility (Published/Draft)
+
+📥 Orders
+Track and manage customer orders.
+
+Order ID	Customer	Date	Status	Total	View
+
+Status:
+
+Pending
+
+Shipped
+
+Delivered
+
+Cancelled
+
+View order details:
+
+Items ordered
+
+Shipping info
+
+Payment method
+
+Update status
+
+👥 Customers
+Track registered customers.
+
+Name	Email	Orders	Last Order	Status
+
+View customer profile:
+
+Order history
+
+Contact details
+
+Account status (Active/Banned)
+
+📊 Analytics (Optional)
+Revenue (day/week/month)
+
+Conversion rate
+
+Abandoned carts
+
+Popular search terms
+
+Geo-location of customers
+
+💬 Reviews & Feedback
+View user reviews
+
+Approve or delete reviews
+
+Filter by product
+
+Sort by ratings
+
+⚙️ Settings
+Manage admin users
+
+Site settings (store name, logo, etc.)
+
+Payment & Shipping settings
+
+Email templates
+
+Banners / Home page sliders
+
+🔐 Authentication (Backend Only)
+Admin login/logout
+
+Forgot password
+
+Role-based access (Owner vs. Staff)
+
+🛠️ Tech Stack Suggestions (Optional)
+Front-End of Dashboard:
+
+HTML/CSS/JS + Bootstrap or Tailwind
+
+Admin template like AdminLTE, Metronic, or React Admin
+
+Back-End:
+
+PHP with Laravel or plain PHP
+
+Node.js with Express
+
+Python with Django or Flask
+
+Database:
+
+MySQL / PostgreSQL / MongoDB
+
+🔄 Flow: Dashboard → Database → Website
+Admin adds/edits product on dashboard.
+
+Data is stored/updated in the database.
+
+Website fetches data dynamically (e.g., via PHP + SQL or API).
+
+Product changes appear live on the site.
+

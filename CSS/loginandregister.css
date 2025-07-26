@@ -1,0 +1,231 @@
+*{
+    margin: 0;
+    padding: 0;
+
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+  h1,h2,h3,h4,h5,h6,span{
+        font-family: var(--headings-font);
+        font-weight: lighter;
+    }
+    p,a,select,input,option,textarea{
+      font-family: var(--bodytext-font);
+    }
+:root{
+    --color-background: #FFFFFF;      /* White background */
+  --color-primary: #910a2c;         /*  maroon primary color for important headings, keys and titles */
+  --color-text: #222222;            /* Almost-black for high readability */
+  --color-btn-link-icons: #590016;          /* Use maroon for buttons, links and icons */
+  --color-btn-link-icons-hover: #a70d39;    /* Darker maroon for hover states */
+  --color-border: #EDEDED;          /* Soft gray for dividers */
+   --color-notification-alert: #f38e8e;       /* Soft blush light red for notification and alerts*/
+   --headings-font: 'Playfair Display', serif;
+   --bodytext-font: "Forum", serif;
+   --logofont:"Great Vibes", cursive;
+}
+/*login and regsiter section starts here */
+
+.loginandregsiter{
+width: 100vw;
+min-height: 100vh;
+background: linear-gradient(135deg, var(--color-btn-link-icons-hover), var(--color-notification-alert), #f6caca);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.loginandregsiter .loginandregsiter-box{
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+        width: 350px;
+        position: relative;
+        overflow: hidden;
+max-width: 70%;
+border-radius: 10px;
+height: fit-content;
+box-shadow:
+  0 8px 24px rgba(167, 13, 57, 0.2),     
+  0 4px 12px rgba(243, 142, 142, 0.25);  
+  }
+    .loginandregsiter .loginandregsiter-box  form .inputs{
+display: flex;
+flex-direction: column;
+height: 200px;
+justify-content: space-evenly;
+
+    }
+    .loginandregsiter .loginandregsiter-box .login form  .inputs{
+      height: 150px !important;
+    }
+        .loginandregsiter .loginandregsiter-box  form .inputs input{
+          padding:0.5rem 1rem;
+          font-size: 1rem;
+    
+        }
+          .loginandregsiter .loginandregsiter-box  form .inputs input::placeholder{
+               
+            font-size: 1rem;
+          }
+           .loginandregsiter .loginandregsiter-box  form .inputs input:focus::placeholder{
+           font-size: 0.8rem;
+position: absolute;
+top: 5px;
+transition-duration: 0.3s;
+           }
+            .loginandregsiter .loginandregsiter-box  form .inputs input:focus{
+              outline: none;
+            }
+        .loginandregsiter .loginandregsiter-box .main-div{
+            display: flex;
+    width: 200%;
+           transition: transform 0.5s ease-in-out;
+        }
+    .loginandregsiter-box.show-login .main-div {
+  transform: translateX(0%);
+}
+
+.loginandregsiter-box.show-register .main-div {
+  transform: translateX(-50%);
+}
+.login, .register {
+  width: 50%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+  .loginandregsiter .loginandregsiter-box .logo-div .logo{
+   font-family: var(--logofont);
+   color: var(--color-btn-link-icons-hover);
+   letter-spacing: 2px;
+ font-weight:  lighter;
+font-size: 2.3rem;
+text-align: center;
+
+}
+ .loginandregsiter .loginandregsiter-box  .btns-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+ }
+  .loginandregsiter .loginandregsiter-box .btns-div{
+    display: flex;
+ 
+    justify-content: space-evenly;
+    width: 70%;
+  }
+    .loginandregsiter .loginandregsiter-box .btns-div button{
+      border: none;
+background-color: transparent;
+      padding:0.5rem 1rem;
+
+    
+    }
+    .loginandregsiter .loginandregsiter-box .btns-div .login-btn{
+      border-bottom: 3px solid var(--color-primary);
+    }
+        .loginandregsiter .loginandregsiter-box .btns-div button h3{
+          font-size: 1.2rem;
+        }
+.loginandregsiter .loginandregsiter-box  form .btns-div2{
+  display: flex;
+  justify-content: space-evenly;
+flex-wrap: wrap;
+height: 100px;
+align-items: center;
+
+}
+  .loginandregsiter .loginandregsiter-box  form  .submit-btn{
+  border: none;
+  width:50%;
+  height: 3.5em;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+
+}
+
+
+
+.text {
+  font-weight: 600;
+  color: var(--color-background);
+  font-size: medium;
+  letter-spacing: 1px;
+}
+
+.loginandregsiter .loginandregsiter-box  form   .submit-btn:hover {
+  background: linear-gradient(0deg,var(--color-btn-link-icons-hover),var(--color-notification-alert));
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+  inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+  0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+  0px 0px 180px 0px var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.loginandregsiter .loginandregsiter-box  form  .submit-btn:hover .text {
+  color: white;
+}
+ .loginandregsiter .loginandregsiter-box  form  .back{
+                           border: none;
+padding: 0rem 1rem;
+     height: 40px;
+          border-radius: 5px;
+                    font-size: 1rem;
+                      background-color: var(--color-background);
+        
+            border: 1px solid var(--color-text)
+ }
+  .loginandregsiter .loginandregsiter-box  form  .back a {
+    text-decoration: none;
+        color: var(--color-text);
+  }
+    .loginandregsiter .loginandregsiter-box  form .inputs .password-div{
+      background-color: #910a2c;
+      display: flex;
+      justify-content: center;
+width: 100%;
+    position: relative;
+    
+  
+    }
+        .loginandregsiter .loginandregsiter-box  form .inputs .password-div input{
+      width: 85%;
+      position: absolute;
+      height: 20px;
+      font-size: 1.2rem;
+     
+        }
+              .loginandregsiter .loginandregsiter-box  form .inputs .password-div abbr lord-icon{
+                  position: absolute;  
+                 right: 10px;
+               top: 1vh;
+              }
+/* login and regsiter section ends here */
+/* media query */
+
+
+
+
+  @media (max-width:424px) {
+    .loginandregsiter .loginandregsiter-box  form .inputs .password-div input{
+      width: 75%;
+      position: absolute;
+     
+        }
+  }
+ 
+
+  @media (max-width:350px) {
+    .loginandregsiter .loginandregsiter-box{
+      height: auto;
+    }
+  }

@@ -1,0 +1,12 @@
+.container .bedsheets .bedsheets-div .img-div{
+
+width: 300px !important;
+height: 300px !important;
+
+
+}
+.container .bedsheets .bedsheets-div .img-div::before{
+  
+ width: 300px !important;
+height: 300px !important;
+}

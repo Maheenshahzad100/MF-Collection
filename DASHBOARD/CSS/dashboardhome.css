@@ -1,0 +1,93 @@
+/* <!-- dashboard overview section starts here --> */
+
+.overview{
+  width: 100vw;
+  min-height: 100vh;
+
+  margin-top: 5rem;
+  padding-top: 5rem;
+}
+
+.overview .overview-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 100vw;
+}
+
+.overview .cards-div{
+
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  height: auto;
+  width: 80%;
+  justify-self: center;
+}
+.overview .cards-div .card{
+  margin-top: 3rem;
+  width: 300px;
+  height: 200px;
+  background-color:var(--color-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.overview .cards-div h2{
+padding: 0rem 0rem 0rem 1rem;
+color: rgba(0, 0, 0, 0.8);
+      font-family: var(--bodytext-font);
+
+}
+.overview .cards-div .red{
+align-self: flex-start;
+  padding: 0rem 0rem 0rem 1rem;
+font-size: 1.8rem;
+color: var(--color-primary);
+       font-family: var(--headings-font);
+
+}
+
+.overview .cards-div lord-icon{
+  padding: 0rem 1rem 0rem 0rem;
+  align-self: flex-end;
+} 
+.overview .chart-div{
+padding: 4rem 0rem 2rem 4rem;
+ display: flex;
+ justify-items: center;
+ flex-direction: column;
+ align-items: center;
+ 
+}
+.overview .chart-div h1{
+
+  text-align: center;
+  font-size: 1.6rem;
+}
+.overview .chart-div .chart{
+  width:80%;
+ margin-top: 2rem;
+ justify-items: center;
+ display: flex;
+ align-items: center;
+
+}
+
+/* <!-- dashboard overview section ends here --> */
+
+@media (max-width:800px) {
+    .overview .chart-div .chart{
+  width:80%;
+ 
+
+}
+}
+@media (max-width:500px) {
+    .overview .chart-div .chart{
+  width:100%;
+}
+}

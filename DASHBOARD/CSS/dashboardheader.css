@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+  h1,h2,h3,h4,h5,h6,span,th{
+        font-family: var(--headings-font);
+        font-weight: lighter;
+    }
+    p,a,option,select,button,td{
+      font-family: var(--bodytext-font);
+    }
+:root{
+    --color-background: #FFFFFF;      /* White background */
+  --color-primary: #910a2c;         /*  maroon primary color for important headings, keys and titles */
+  --color-text: #222222;            /* Almost-black for high readability */
+  --color-btn-link-icons: #590016;          /* Use maroon for buttons, links and icons */
+  --color-btn-link-icons-hover: #a70d39;    /* Darker maroon for hover states */
+  --color-border: #EDEDED;          /* Soft gray for dividers */
+   --color-notification-alert: #f38e8e;       /* Soft blush light red for notification and alerts*/
+   --headings-font: 'Playfair Display', serif;
+   --bodytext-font: "Forum", serif;
+   --logofont:"Great Vibes", cursive;
+}
+
+.nav-ul1{
+     width: 900px;
+
+
+}
+.nav-ul2{
+   width:280px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+   justify-content: end;
+
+
+}
+.nav-ul2 li p{
+    font-size: 1.1rem;
+ 
+}
+.nav-ul2 li .admin-p{
+    background-color: var(--color-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-background);
+}
+
+@media (max-width:800px) {
+  .nav-ul2{
+   width:500px;
+
+
+
+}
+}

@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+  h1,h2,h3,h4,h5,h6,span{
+        font-family: var(--headings-font);
+    }
+    p,a,.faq-ans1,.faq1{
+      font-family: var(--bodytext-font);
+    }
+:root{
+    --color-background: #FFFFFF;      /* White background */
+  --color-primary: #910a2c;         /*  maroon primary color for important headings, keys and titles */
+  --color-text: #222222;            /* Almost-black for high readability */
+  --color-btn-link-icons: #590016;          /* Use maroon for buttons, links and icons */
+  --color-btn-link-icons-hover: #a70d39;    /* Darker maroon for hover states */
+  --color-border: #EDEDED;          /* Soft gray for dividers */
+   --color-notification-alert: #f38e8e;       /* Soft blush light red for notification and alerts*/
+   --headings-font: 'Playfair Display', serif;
+   --bodytext-font: "Forum", serif;
+   --logofont:"Great Vibes", cursive;
+}
+/* faqs section  starts here */
+.faq-section{
+    position: static;
+    width: 100vw;
+    min-height: 100vh;
+
+
+            display: flex;
+    flex-direction: column;
+    align-items: center;
+color: var(--color-background);
+}
+ .faq-h1-div{
+    position: static;
+    z-index: 1;
+align-items: center;
+    display: flex;
+padding-top: 5rem;
+    justify-content: center;
+    font-size: 2rem;
+  
+}
+ .faq-h1-div h1{
+    font-weight: lighter;
+ 
+ }
+.faq-h1-div abbr{
+text-decoration: none;
+}
+.faq-section .faq1,.faq-section .faq2{
+ margin-top: 4rem;
+    width: 50vw;
+        display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+background-color: var(--color-primary);
+padding: 1rem;
+font-size: 1.2rem;
+
+position: absolute;
+z-index: 11;
+border-radius: 10px;
+border-bottom-left-radius: 0 !important;
+border-bottom-right-radius: 0 !important;
+}
+.faq-section  .faq-ans1,.faq-section  .faq-ans2{
+    position: relative;
+    top: 0vh;
+    z-index: 1;
+    margin-top: 4rem;
+
+ display: flex;
+  
+
+    background-color: var(--color-primary);
+    width: 50vw;
+    padding: 1rem;
+    font-size: 1.2rem;
+    transition-duration: 0.5s;
+border-radius: 10px;
+border-top-left-radius: 0 !important;
+border-top-right-radius: 0 !important;
+
+}
+.faq-section .faq1 .arrow{
+    display: none;
+}
+@media (max-width:648px) {
+     .faq-section .faq1 lord-icon, .faq-section .faq2 lord-icon{
+    display: none;
+ }
+ .faq-section .faq1,.faq-section  .faq2{
+    width: 80vw;
+background-color: transparent;
+color: var(--color-text);
+font-size: 1rem;
+position: relative;
+z-index: 1;
+ margin-top: 1rem;
+    justify-content: center;
+    position: relative;
+   font-weight: bold;
+}
+
+.faq-section  .faq-ans1,.faq-section  .faq-ans2{
+  background-color: transparent;
+color: var(--color-text);
+    width: 80vw;
+    font-size: 1rem;
+    transition-duration: 0s;
+ margin-top: 1rem;
+     justify-content: center;
+
+}
+.faq-section .faq1 .arrow{
+    display: flex;
+    margin-right: 1rem;
+}
+
+}
