@@ -48,3 +48,4 @@ isShowed=false;
  
 
 })
+//login and register js//
